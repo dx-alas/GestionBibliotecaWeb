@@ -2,6 +2,9 @@
 
 Este repositorio contiene la solución integral para el sistema de gestión de biblioteca, desarrollado bajo una arquitectura MVC utilizando **C# (.NET)** y **SQL Server**.
 
+## Base de datos
+[GestionBibliotecaBD](https://github.com/dx-alas/GestionBibliotecaBD)
+
 ## Desarrolladores
 
 El desarrollo de este sistema ha sido realizado por:
