@@ -1,0 +1,137 @@
+﻿@model IEnumerable<GestionBibliotecaWeb.Models.Prestamo>
+
+@{
+    ViewData["Title"] = "Prestamos";
+}
+
+<div class="container mt-4">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb p-3 rounded shadow-sm bg-light">
+
+            <li class="breadcrumb-item">
+                <a href="/" class="text-dark text-decoration-none fw-semibold">
+                    <i class="bi bi-house-door-fill"></i> Inicio
+                </a>
+            </li>
+
+            <li class="breadcrumb-item active fw-bold text-primary" aria-current="page">
+                <i class="bi bi-arrow-left-right"></i> Prestamos
+            </li>
+
+        </ol>
+    </nav>
+
+    <!-- Encabezado -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        
+        <div>
+            <h1 class="fw-bold">PRESTAMOS</h1>
+            <h5 class="text-muted">Gestión de Prestamos</h5>
+        </div>
+
+        <!-- Botón Agregar -->
+        <a asp-action="Create" class="btn btn-primary shadow">
+            <i class="bi bi-plus-circle"></i> Agregar Prestamo
+        </a>
+
+    </div>
+
+    <div class="card shadow rounded"> 
+
+        <div class="card-body">
+
+            <!-- Tabla de prestamos -->
+            <div style="max-height: 370px; overflow-y: auto;">
+
+                <table class="table table-hover align-middle mb-0">
+
+                    <!-- Encabezados -->
+                    <thead class="table-dark sticky-top">
+                        <tr>
+                            <th>
+                                Fecha Prestamo
+                            </th>
+                            <th>
+                                Fecha Devolucion
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Observacion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Lector)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Libro)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Usuario)
+                            </th>
+                            <th class="text-center">
+                                Acciones
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <!-- Datos -->
+                    <tbody>
+                        @foreach (var item in Model) 
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FechaPrestamo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FechaDevolucion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Observacion)
+                                </td>
+                                <!-- Mostrar nombre del lector -->
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Lector.Nombre)
+                                </td>
+                                <!-- Mostrar titulo del libro -->
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Libro.Titulo)
+                                </td>
+                                <!-- Mostrar nombre del usuario -->
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Usuario.Nombre)
+                                </td>
+
+                                <!-- Botones de acciones -->
+                                <td class="text-center">
+
+                                    <!-- Botón Editar -->
+                                    <a asp-action="Edit" 
+                                            asp-route-id="@item.PrestamoId"
+                                            class="btn btn-warning btn-sm rounded-circle shadow-sm">
+
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+
+                                    <!-- Botón Detalles -->
+                                    <a asp-action="Details" 
+                                            asp-route-id="@item.PrestamoId"
+                                            class="btn btn-info btn-sm rounded-circle shadow-sm">
+
+                                        <i class="bi bi-file-earmark-text"></i>
+                                    </a>
+
+                                    <!-- Botón Eliminar -->
+                                    <a asp-action="Delete" 
+                                            asp-route-id="@item.PrestamoId"
+                                            class="btn btn-danger btn-sm rounded-circle shadow-sm">
+
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

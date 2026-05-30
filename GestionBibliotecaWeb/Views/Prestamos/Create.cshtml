@@ -1,0 +1,132 @@
+﻿@model GestionBibliotecaWeb.Models.Prestamo
+
+@{
+    ViewData["Title"] = "Agregar Prestamo";
+}
+
+<div class="container mt-4">
+
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb p-3 rounded shadow-sm bg-light">
+
+            <li class="breadcrumb-item">
+                <a href="/" class="text-dark text-decoration-none fw-semibold">
+                    <i class="bi bi-house-door-fill"></i> Inicio
+                </a>
+            </li>
+
+            <li class="breadcrumb-item">
+                <a href="/Prestamos" class="text-dark text-decoration-none fw-semibold">
+                    <i class="bi bi-arrow-left-right"></i> Prestamos
+                </a>
+            </li>
+
+            <li class="breadcrumb-item active fw-bold text-primary" aria-current="page">
+                <i class="bi bi-plus-circle-fill"></i> Agregar Prestamo
+            </li>
+
+        </ol>
+    </nav>
+
+    <div class="card shadow-lg rounded">
+
+        <!-- Header -->
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">
+                <i class="bi bi-book"></i>
+                Agregar Prestamo
+            </h3>
+        </div>
+
+        <div class="card-body">
+            <!-- Formulario -->
+            <form asp-action="Create">
+                <!-- Validaciones -->
+                <div asp-validation-summary="ModelOnly" 
+                class="text-danger">
+                </div>
+
+                <!-- Selección Libro -->
+                <div class="mb-3'">
+                    <label class="control-label fw-bold">Libro</label>
+                    <select asp-for="LibroId" 
+                            class ="form-control" 
+                            asp-items="ViewBag.LibroId">
+                        <option selected disabled>
+                            Seleccione un libro
+                        </option>
+                    </select>
+                </div>
+
+                <!-- Selección Lector -->
+                <div class="mb-3">
+                    <label class="control-label fw-bold">Lector</label>
+
+                    <select asp-for="LectorId" 
+                            class ="form-control" 
+                            asp-items="ViewBag.LectorId">
+                        <option selected disabled>
+                            Seleccione un lector
+                        </option>
+                    </select>
+                </div>
+
+                <!-- Fecha Devolución -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Fecha Devolución</label>
+                    <input asp-for="FechaDevolucion" 
+                        class="form-control"
+                        placeholder="Ingrese la fecha devolución del libro" />
+
+                    <span asp-validation-for="FechaDevolucion" 
+                        class="text-danger">
+                    </span>
+                </div>
+
+                <!-- Observación -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Observación</label>
+                    <input asp-for="Observacion" 
+                        class="form-control" 
+                        placeholder="Ingrese una observación del libro" />
+
+                    <span asp-validation-for="Observacion" 
+                        class="text-danger">
+                    </span>
+                </div>
+
+                <!-- Selección Usuario -->
+                <div class="mb-3">
+                    <label class="control-label fw-bold">Usuario</label>
+                    <select asp-for="UsuarioId" 
+                            class ="form-control" 
+                            asp-items="ViewBag.UsuarioId">
+                        <option selected disabled>
+                            Seleccione un Usuario
+                        </option>
+                    </select>
+                </div>
+
+                <!-- Botones -->
+                <div class="d-flex gap-2">
+                    <button type="submit"
+                            class="btn btn-success shadow">
+                        <i class="bi bi-check-circle"></i>
+                        Agregar
+                    </button>
+
+                    <a asp-action="Index"
+                           class="btn btn-warning shadow">
+                        <i class="bi bi-arrow-left"></i>
+                        Regresar
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

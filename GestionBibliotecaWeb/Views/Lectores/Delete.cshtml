@@ -1,0 +1,169 @@
+﻿@model GestionBibliotecaWeb.Models.Lectore
+
+@{
+    ViewData["Title"] = "Eliminar Lector";
+}
+
+<div class="container mt-4">
+
+    <!-- BREADCRUMB -->
+
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb p-3 rounded shadow-sm bg-light">
+
+            <li class="breadcrumb-item">
+                <a href="/" class="text-dark text-decoration-none fw-semibold">
+                    <i class="bi bi-house-door-fill"></i> Inicio
+                </a>
+            </li>
+
+            <li class="breadcrumb-item">
+                <a href="/Lectores" class="text-dark text-decoration-none fw-semibold">
+                    <i class="bi bi-people-fill"></i> Lectores
+                </a>
+            </li>
+
+            <li class="breadcrumb-item active fw-bold text-danger" aria-current="page">
+                <i class="bi bi-trash-fill"></i> Eliminar Lector
+            </li>
+
+        </ol>
+    </nav>
+
+    <!-- TARJETA PRINCIPAL -->
+
+    <div class="card shadow-lg rounded border-danger">
+
+        <!-- ENCABEZADO -->
+
+        <div class="card-header bg-danger text-white">
+            <h3 class="mb-0">
+                <i class="bi bi-trash"></i>
+                Eliminar Lector
+            </h3>
+        </div>
+
+        <!-- CUERPO -->
+
+        <div class="card-body">
+
+            <!-- MENSAJE DE CONFIRMACION -->
+
+            <div class="alert alert-warning">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+                ¿Está seguro que desea eliminar este lector?
+            </div>
+
+            <!-- DATO NOMBRE -->
+
+            <div class="row mb-3">
+
+                <div class="col-md-3 fw-bold">
+                    Nombre
+                </div>
+
+                <div class="col-md-9">
+                    @Html.DisplayFor(model => model.Nombre)
+                </div>
+
+            </div>
+
+            <hr />
+
+            <!-- DATO APELLIDO -->
+
+            <div class="row mb-3">
+
+                <div class="col-md-3 fw-bold">
+                    Apellido
+                </div>
+
+                <div class="col-md-9">
+                    @Html.DisplayFor(model => model.Apellido)
+                </div>
+
+            </div>
+
+            <hr />
+
+            <!-- DATO DOCUMENTO -->
+
+            <div class="row mb-3">
+
+                <div class="col-md-3 fw-bold">
+                    Documento
+                </div>
+
+                <div class="col-md-9">
+                    @Html.DisplayFor(model => model.Documento)
+                </div>
+
+            </div>
+
+            <hr />
+
+            <!-- DATO CORREO -->
+
+            <div class="row mb-3">
+
+                <div class="col-md-3 fw-bold">
+                    Correo
+                </div>
+
+                <div class="col-md-9">
+                    @Html.DisplayFor(model => model.Correo)
+                </div>
+
+            </div>
+
+            <hr />
+
+            <!-- DATO TELEFONO -->
+
+            <div class="row mb-4">
+
+                <div class="col-md-3 fw-bold">
+                    Telefono
+                </div>
+
+                <div class="col-md-9">
+                    @Html.DisplayFor(model => model.Telefono)
+                </div>
+
+            </div>
+
+            <!-- FORMULARIO ELIMINACION -->
+
+            <form asp-action="Delete">
+
+                <input type="hidden" asp-for="LectorId" />
+
+                <!-- BOTONES -->
+
+                <div class="d-flex gap-2">
+
+                    <button type="submit"
+                            class="btn btn-danger shadow">
+
+                        <i class="bi bi-trash"></i>
+                        Eliminar
+
+                    </button>
+
+                    <a asp-action="Index"
+                       class="btn btn-secondary shadow">
+
+                        <i class="bi bi-arrow-left"></i>
+                        Regresar
+
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

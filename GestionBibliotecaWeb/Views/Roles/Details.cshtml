@@ -1,0 +1,82 @@
+﻿@model GestionBibliotecaWeb.Models.Role
+
+@{
+    ViewData["Title"] = "Detalle Rol";
+}
+
+<div class="container mt-4">
+
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb p-3 rounded shadow-sm bg-light">
+
+            <li class="breadcrumb-item">
+                <a href="/" class="text-dark text-decoration-none fw-semibold">
+                    <i class="bi bi-house-door-fill"></i> Inicio
+                </a>
+            </li>
+
+            <li class="breadcrumb-item">
+                <a href="/Roles" class="text-dark text-decoration-none fw-semibold">
+                    <i class="bi bi-shield-lock-fill"></i> Roles
+                </a>
+            </li>
+
+            <li class="breadcrumb-item active fw-bold text-info" aria-current="page">
+                <i class="bi bi-person-badge-fill"></i>Detalle Rol
+            </li>
+
+        </ol>
+    </nav>
+
+    <div class="card shadow-lg rounded">
+
+        <!-- Header -->
+        <div class="card-header bg-info text-white">
+            <h3 class="mb-0">
+                <i class="bi bi-person-badge"></i>
+                Detalles del Rol
+            </h3>
+        </div>
+
+        <div class="card-body">
+
+            <!-- Información del rol -->
+            <div class="row mb-3">
+
+                <div class="col-md-3 fw-bold">
+                    Nombre del Rol
+                </div>
+
+                <div class="col-md-9">
+                    @Html.DisplayFor(model => model.Nombre)
+                </div>
+
+            </div>
+
+            <hr />
+
+            <!-- Botones -->
+            <div class="mt-4 d-flex gap-2">
+
+                <!-- Botón Editar -->
+                <a asp-action="Edit"
+                       asp-route-id="@Model?.RolId"
+                       class="btn btn-primary shadow">
+                    <i class="bi bi-pencil-square"></i>
+                    Editar
+                </a>
+
+                <!-- Botón Regresar -->
+                <a asp-action="Index"
+                       class="btn btn-warning shadow">
+                    <i class="bi bi-arrow-left"></i>
+                    Regresar
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

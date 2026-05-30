@@ -1,0 +1,92 @@
+﻿@model GestionBibliotecaWeb.Models.Role
+
+@{
+    ViewData["Title"] = "Eliminar Rol";
+}
+
+<div class="container mt-4">
+
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb p-3 rounded shadow-sm bg-light">
+
+            <li class="breadcrumb-item">
+                <a href="/" class="text-dark text-decoration-none fw-semibold">
+                    <i class="bi bi-house-door-fill"></i> Inicio
+                </a>
+            </li>
+
+            <li class="breadcrumb-item">
+                <a href="/Roles" class="text-dark text-decoration-none fw-semibold">
+                    <i class="bi bi-shield-lock-fill"></i> Roles
+                </a>
+            </li>
+
+            <li class="breadcrumb-item active fw-bold text-danger" aria-current="page">
+                <i class="bi bi-trash-fill"></i>Eliminar Rol
+            </li>
+
+        </ol>
+    </nav>
+
+    <div class="card shadow-lg rounded border-danger">
+
+        <!-- Header -->
+        <div class="card-header bg-danger text-white">
+            <h3 class="mb-0">
+                <i class="bi bi-trash"></i>
+                Eliminar Rol
+            </h3>
+        </div>
+
+        <div class="card-body">
+
+            <!-- Mensaje de advertencia -->
+            <div class="alert alert-warning">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+                ¿Está seguro que desea eliminar este rol?
+            </div>
+
+            <!-- Información del rol -->
+            <div class="row mb-3">
+
+                <div class="col-md-3 fw-bold">
+                    Nombre del Rol
+                </div>
+
+                <div class="col-md-9">
+                    @Html.DisplayFor(model => model.Nombre)
+                </div>
+
+            </div>
+
+            <hr />
+
+            <!-- Formulario eliminar -->
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="RolId" />
+
+                <!-- Botones -->
+                <div class="d-flex gap-2">
+
+                    <!-- Botón Eliminar -->
+                    <button type="submit"
+                            class="btn btn-danger shadow">
+                        <i class="bi bi-trash"></i>
+                        Eliminar
+                    </button>
+
+                    <!-- Botón Regresar -->
+                    <a asp-action="Index"
+                           class="btn btn-secondary shadow">
+                        <i class="bi bi-arrow-left"></i>
+                        Regresar
+                    </a>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

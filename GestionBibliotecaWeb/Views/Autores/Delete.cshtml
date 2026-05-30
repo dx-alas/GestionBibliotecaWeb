@@ -1,0 +1,99 @@
+﻿@model GestionBibliotecaWeb.Models.Autore
+
+@{
+    ViewData["Title"] = "Eliminar Autor";
+}
+
+<div class="container mt-4">
+
+    <!-- BREADCRUMB -->
+
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb p-3 rounded shadow-sm bg-light">
+
+            <li class="breadcrumb-item">
+                <a href="/" class="text-dark text-decoration-none fw-semibold">
+                    <i class="bi bi-house-door-fill"></i> Inicio
+                </a>
+            </li>
+
+            <li class="breadcrumb-item">
+                <a href="/Autores" class="text-dark text-decoration-none fw-semibold">
+                    <i class="bi bi-people-fill"></i> Autores
+                </a>
+            </li>
+
+            <li class="breadcrumb-item active fw-bold text-danger" aria-current="page">
+                <i class="bi bi-trash-fill"></i> Eliminar Autor
+            </li>
+
+        </ol>
+    </nav>
+
+    <!-- TARJETA PRINCIPAL -->
+
+    <div class="card shadow-lg rounded border-danger">
+
+        <!-- ENCABEZADO -->
+
+        <div class="card-header bg-danger text-white">
+            <h3 class="mb-0">
+                <i class="bi bi-trash"></i>
+                Eliminar Autor
+            </h3>
+        </div>
+
+        <!-- CUERPO -->
+
+        <div class="card-body">
+
+            <!-- MENSAJE DE CONFIRMACION -->
+
+            <div class="alert alert-warning">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+                ¿Está seguro que desea eliminar este autor?
+            </div>
+
+            <!-- DATOS DEL AUTOR -->
+
+            <div class="row mb-3">
+
+                <div class="col-md-3 fw-bold">
+                    Nombre
+                </div>
+
+                <div class="col-md-9">
+                    @Html.DisplayFor(model => model.Nombre)
+                </div>
+
+            </div>
+
+            <hr />
+
+            <!-- FORMULARIO ELIMINACION -->
+
+            <form asp-action="Delete">
+
+                <input type="hidden" asp-for="AutorId" />
+
+                <!-- BOTONES -->
+
+                <div class="d-flex gap-2">
+
+                    <button type="submit"
+                            class="btn btn-danger shadow">
+                        <i class="bi bi-trash"></i>
+                        Eliminar
+                    </button>
+
+                    <a asp-action="Index"
+                           class="btn btn-secondary shadow">
+                        <i class="bi bi-arrow-left"></i>
+                        Regresar
+                    </a>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

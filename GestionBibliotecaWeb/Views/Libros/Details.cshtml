@@ -1,0 +1,129 @@
+﻿@model GestionBibliotecaWeb.Models.Libro
+
+@{
+    ViewData["Title"] = "Detalle Libro";
+}
+
+<div class="container mt-4">
+
+        <!-- BREADCRUMB -->
+
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb p-3 rounded shadow-sm bg-light">
+
+            <li class="breadcrumb-item">
+                <a href="/" class="text-dark text-decoration-none fw-semibold">
+                    <i class="bi bi-house-door-fill"></i> Inicio
+                </a>
+            </li>
+
+            <li class="breadcrumb-item">
+                <a href="/Libros" class="text-dark text-decoration-none fw-semibold">
+                    <i class="bi bi-book-fill"></i> Libros
+                </a>
+            </li>
+
+            <li class="breadcrumb-item active fw-bold text-info" aria-current="page">
+                <i class="bi bi-file-earmark-text-fill"></i> Detalles del Libro
+            </li>
+
+        </ol>
+    </nav>
+
+    <!-- TARJETA PRINCIPAL -->
+
+    <div class="card shadow-lg rounded">
+
+        <div class="card-header bg-info text-white">
+            <h3 class="mb-0">
+                <i class="bi bi-book"></i>
+                Detalles del Libro
+            </h3>
+        </div>
+
+        <!-- CUERPO -->
+
+        <div class="card-body">
+
+            <div class="row mb-3">
+
+                <div class="col-md-3 fw-bold">
+                    Título
+                </div>
+
+                <div class="col-md-9">
+                    @Html.DisplayFor(model => model.Titulo)
+                </div>
+
+            </div>
+
+            <hr />
+
+            <!-- DATO IMAGEN URL -->
+
+            <div class="row mb-3">
+
+                <div class="col-md-3 fw-bold">
+                    Imagen URL
+                </div>
+
+                <div class="col-md-9">
+                    @if (!string.IsNullOrEmpty(Model.ImagenUrl))
+                    {
+                        <a href="@Model.ImagenUrl" target="_blank">
+                            @Model.ImagenUrl
+                        </a>
+                    }
+                    else
+                    {
+                        <span class="text-muted">Sin imagen</span>
+                    }
+                </div>
+
+            </div>
+
+            <hr />
+
+            <!-- DATO ISBN -->
+
+            <div class="row mb-3">
+
+                <div class="col-md-3 fw-bold">
+                    ISBN
+                </div>
+
+                <div class="col-md-9">
+                    @Html.DisplayFor(model => model.Isbn)
+                </div>
+
+            </div>
+
+            <hr />
+
+            <!-- DATO AUTOR -->
+
+            <div class="row mb-3">
+
+                <div class="col-md-3 fw-bold">
+                    Autor
+                </div>
+
+                <div class="col-md-9">
+                    @Html.DisplayFor(model => model.Autor.AutorId)
+                </div>
+
+            </div>
+
+            <!-- BOTONES -->
+
+            <div class="mt-4 d-flex gap-2">
+
+                <a asp-action="Index"
+                       class="btn btn-warning shadow">
+                    <i class="bi bi-arrow-left"></i>
+                    Regresar
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

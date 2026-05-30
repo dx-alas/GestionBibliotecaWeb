@@ -1,0 +1,282 @@
+﻿@model IEnumerable<GestionBibliotecaWeb.Models.Libro>
+
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="container-fluid">
+
+    <!-- TITULO -->
+
+    <div class="mb-4">
+
+        <h1 class="fw-bold">
+            Panel Administrativo
+        </h1>
+
+        <p class="text-muted">
+            Sistema de Gestión Bibliotecaria
+        </p>
+
+    </div>
+
+    <!-- TARJETAS -->
+
+    <div class="row g-4 mb-4">
+
+        <!-- LIBROS -->
+
+        <div class="col-md-3">
+
+            <div class="card bg-primary text-white shadow rounded">
+
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <div>
+
+                            <h6 class="text-uppercase">
+                                Libros
+                            </h6>
+
+                            <h2 class="fw-bold">
+                                @ViewBag.TotalLibros
+                            </h2>
+
+                        </div>
+
+                        <i class="bi bi-book display-5"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- AUTORES -->
+
+        <div class="col-md-3">
+
+            <div class="card bg-success text-white shadow rounded">
+
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <div>
+
+                            <h6 class="text-uppercase">
+                                Autores
+                            </h6>
+
+                            <h2 class="fw-bold">
+                                @ViewBag.TotalAutores
+                            </h2>
+
+                        </div>
+
+                        <i class="bi bi-pencil-square display-5"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- LECTORES -->
+
+        <div class="col-md-3">
+
+            <div class="card bg-warning text-dark shadow rounded">
+
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <div>
+
+                            <h6 class="text-uppercase">
+                                Lectores
+                            </h6>
+
+                            <h2 class="fw-bold">
+                                @ViewBag.TotalLectores
+                            </h2>
+
+                        </div>
+
+                        <i class="bi bi-people display-5"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- PRESTAMOS -->
+
+        <div class="col-md-3">
+
+            <div class="card bg-danger text-white shadow rounded">
+
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <div>
+
+                            <h6 class="text-uppercase">
+                                Prestamos
+                            </h6>
+
+                            <h2 class="fw-bold">
+                                @ViewBag.TotalPrestamos
+                            </h2>
+
+                        </div>
+
+                        <i class="bi bi-arrow-left-right display-5"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- BUSCADOR DINAMICO -->
+
+    <div class="card shadow border-0 mb-4">
+
+        <div class="card-body">
+
+            <h4 class="fw-bold mb-4">
+
+                <i class="bi bi-search"></i>
+                Buscar Libros y Autores
+
+            </h4>
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <input type="text"
+                           id="busquedaLibros"
+                           class="form-control form-control-lg"
+                           placeholder="Buscar por título o autor..." />
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- CARTAS PARA LIBROS -->
+    @if (Model != null && Model.Any())
+    {
+        <div class="container mt-4">
+
+            <div class="row" id="contenedorLibros">
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-3 mb-4 libro-card">
+
+                        <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden">
+
+                            @if (!string.IsNullOrEmpty(item.ImagenUrl))
+                            {
+                                <img src="@item.ImagenUrl"
+                                     class="card-img-top"
+                                     alt="Libro"
+                                     style="height:320px; object-fit:cover;">
+                            }
+                            else
+                            {
+                                <img src="https://via.placeholder.com/300x400?text=Sin+Imagen"
+                                     class="card-img-top"
+                                     alt="Sin imagen"
+                                     style="height:320px; object-fit:cover;">
+                            }
+
+                            <div class="card-body text-center">
+
+                                <h5 class="card-title fw-bold titulo-libro">
+                                    @item.Titulo
+                                </h5>
+
+                                <p class="text-muted mb-1 autor-libro">
+                                    @(item.Autor != null ? item.Autor.Nombre : "Sin autor")
+                                </p>
+
+                                <span class="badge bg-dark">
+                                    ISBN: @item.Isbn
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                }
+
+            </div>
+
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning">
+            No hay libros registrados.
+        </div>
+    }
+
+</div>
+
+<!-- SCRIPT BUSQUEDA DINAMICA -->
+
+<script>
+
+    document.getElementById("busquedaLibros").addEventListener("keyup", function () {
+
+        let filtro = this.value.toLowerCase();
+
+        let tarjetas = document.querySelectorAll(".libro-card");
+
+        tarjetas.forEach(function (card) {
+
+            let titulo = card.querySelector(".titulo-libro").innerText.toLowerCase();
+
+            let autor = card.querySelector(".autor-libro").innerText.toLowerCase();
+
+            let isbn = card.innerText.toLowerCase();
+
+            if (titulo.includes(filtro) ||
+                autor.includes(filtro) ||
+                isbn.includes(filtro)) {
+
+                card.style.display = "block";
+            }
+            else {
+
+                card.style.display = "none";
+            }
+
+        });
+
+    });
+
+</script>

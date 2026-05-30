@@ -1,0 +1,120 @@
+﻿@model GestionBibliotecaWeb.Models.Usuario
+
+@{
+    ViewData["Title"] = "Detalles Usuario";
+}
+
+<div class="container mt-4">
+
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb p-3 rounded shadow-sm bg-light">
+        
+            <li class="breadcrumb-item">
+                <a href="/" class="text-dark text-decoration-none fw-semibold">
+                    <i class="bi bi-house-door-fill"></i> Inicio
+                </a>
+            </li>
+
+            <li class="breadcrumb-item">
+                <a href="/Usuarios" class="text-dark text-decoration-none fw-semibold">
+                    <i class="bi bi-people-fill"></i> Usuarios
+                </a>
+            </li>
+
+            <li class="breadcrumb-item active fw-bold text-info" aria-current="page">
+                <i class="bi bi-person-circle"></i> Detalles Usuario
+            </li>
+
+        </ol>
+    </nav>
+
+    <div class="card shadow-lg rounded">
+
+        <div class="card-header bg-info text-white">
+            <h3 class="mb-0">
+                <i class="bi bi-person-circle"></i>
+                Detalles del Usuario
+            </h3>
+        </div>
+
+        <div class="card-body">
+
+            <div class="row mb-3">
+
+                <div class="col-md-3 fw-bold">
+                    Nombre
+                </div>
+
+                <div class="col-md-9">
+                    @Html.DisplayFor(model => model.Nombre)
+                </div>
+
+            </div>
+
+            <hr />
+
+            <div class="row mb-3">
+
+                <div class="col-md-3 fw-bold">
+                    Estado
+                </div>
+
+                <div class="col-md-9">
+
+                    @if (Model.Activo)
+                    {
+                        <span class="badge bg-success">
+                            Activo
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">
+                            Inactivo
+                        </span>
+                    }
+
+                </div>
+
+            </div>
+
+            <hr />
+
+            <div class="row mb-3">
+
+                <div class="col-md-3 fw-bold">
+                    Rol
+                </div>
+
+                <div class="col-md-9">
+                    @Html.DisplayFor(model => model.Rol.Nombre)
+                </div>
+
+            </div>
+
+            <div class="mt-4 d-flex gap-2">
+
+                <a asp-action="Edit"
+                       asp-route-id="@Model.UsuarioId"
+                       class="btn btn-warning shadow">
+
+                    <i class="bi bi-pencil-square"></i>
+                    Editar
+
+                </a>
+
+                <a asp-action="Index"
+                       class="btn btn-secondary shadow">
+
+                    <i class="bi bi-arrow-left"></i>
+                    Regresar
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

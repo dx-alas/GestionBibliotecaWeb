@@ -1,0 +1,143 @@
+﻿@model GestionBibliotecaWeb.Models.Usuario
+
+@{
+    ViewData["Title"] = "Agregar Usuario";
+}
+
+<div class="container mt-4">
+
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb p-3 rounded shadow-sm bg-light">
+    
+            <li class="breadcrumb-item">
+                <a href="/" class="text-dark text-decoration-none fw-semibold">
+                    <i class="bi bi-house-door-fill"></i> Inicio
+                </a>
+            </li>
+
+            <li class="breadcrumb-item">
+                <a href="/Usuarios" class="text-dark text-decoration-none fw-semibold">
+                    <i class="bi bi-people-fill"></i> Usuarios
+                </a>
+            </li>
+
+            <li class="breadcrumb-item active fw-bold text-primary" aria-current="page">
+                <i class="bi bi-person-plus-fill"></i> Agregar Usuario
+            </li>
+
+        </ol>
+    </nav>
+
+    <div class="card shadow-lg rounded">
+
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">
+                <i class="bi bi-person-plus"></i>
+                Agregar Usuario
+            </h3>
+        </div>
+
+        <div class="card-body">
+
+            <form asp-action="Create">
+
+                <div asp-validation-summary="ModelOnly"
+                     class="alert alert-danger">
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label fw-bold">
+                        Nombre
+                    </label>
+
+                    <input asp-for="Nombre"
+                           class="form-control shadow-sm"
+                           placeholder="Ingrese el nombre del usuario" />
+
+                    <span asp-validation-for="Nombre"
+                          class="text-danger">
+                    </span>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label fw-bold">
+                        Contraseña
+                    </label>
+
+                    <input asp-for="Clave"
+                           type="password"
+                           class="form-control shadow-sm"
+                           placeholder="Ingrese la contraseña" />
+
+                    <span asp-validation-for="Clave"
+                          class="text-danger">
+                    </span>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label fw-bold">
+                        Rol
+                    </label>
+
+                    <select asp-for="RolId"
+                            class="form-select shadow-sm"
+                            asp-items="ViewBag.RolId">
+
+                        <option selected disabled>
+                            Seleccione un rol
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="mb-3 form-check">
+
+                    <input asp-for="Activo"
+                           class="form-check-input" />
+
+                    <label asp-for="Activo"
+                           class="form-check-label fw-bold">
+                        Usuario Activo
+                    </label>
+
+                </div>
+
+                <div class="d-flex gap-2">
+
+                    <button type="submit"
+                            class="btn btn-success shadow">
+
+                        <i class="bi bi-check-circle"></i>
+                        Agregar
+
+                    </button>
+
+                    <a asp-action="Index"
+                           class="btn btn-warning shadow">
+
+                        <i class="bi bi-arrow-left"></i>
+                        Regresar
+
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
